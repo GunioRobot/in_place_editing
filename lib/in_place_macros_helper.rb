@@ -20,20 +20,40 @@ module InPlaceMacrosHelper
   #                       be sent after the user presses "ok".
   #
   # Addtional +options+ are:
-  # <tt>:rows</tt>::              Number of rows (more than 1 will use a TEXTAREA)
-  # <tt>:cols</tt>::              Number of characters the text input should span (works for both INPUT and TEXTAREA)
-  # <tt>:size</tt>::              Synonym for :cols when using a single line text input.
-  # <tt>:cancel_text</tt>::       The text on the cancel link. (default: "cancel")
-  # <tt>:save_text</tt>::         The text on the save link. (default: "ok")
-  # <tt>:loading_text</tt>::      The text to display while the data is being loaded from the server (default: "Loading...")
-  # <tt>:saving_text</tt>::       The text to display when submitting to the server (default: "Saving...")
-  # <tt>:external_control</tt>::  The id of an external control used to enter edit mode.
-  # <tt>:load_text_url</tt>::     URL where initial value of editor (content) is retrieved.
-  # <tt>:options</tt>::           Pass through options to the AJAX call (see prototype's Ajax.Updater)
-  # <tt>:with</tt>::              JavaScript snippet that should return what is to be sent
-  #                               in the AJAX call, +form+ is an implicit parameter
-  # <tt>:script</tt>::            Instructs the in-place editor to evaluate the remote JavaScript response (default: false)
-  # <tt>:click_to_edit_text</tt>::The text shown during mouseover the editable text (default: "Click to edit")
+  # <tt>:rows</tt>::                  Number of rows (more than 1 will use a TEXTAREA)
+  # <tt>:cols</tt>::                  Number of characters the text input should span (works for both INPUT and TEXTAREA)
+  # <tt>:size</tt>::                  Synonym for :cols when using a single line text input.
+  # <tt>:cancel_text</tt>::           The text on the cancel link. (default: "cancel")
+  # <tt>:save_text</tt>::             The text on the save link. (default: "ok")
+  # <tt>:loading_text</tt>::          The text to display while the data is being loaded from the server (default: "Loading...")
+  # <tt>:saving_text</tt>::           The text to display when submitting to the server (default: "Saving...")
+  # <tt>:save_control</tt>::          The type of control to use for the save button: button, link, false for none at all
+  # <tt>:cancel_control</tt>::        The type of control to use for the save button: button, link, false for none at all
+  # <tt>:external_control</tt>::      Disables onclick editing so that only an external control can activate editable mode
+  # <tt>:external_control_only</tt>:: The id of an external control used to enter edit mode.
+  # <tt>:load_text_url</tt>::         URL where initial value of editor (content) is retrieved.
+  # <tt>:highlight_color</tt>::       The hexadecimal color to highlight the unclicked control when hovered over
+  # <tt>:highlight_end_color</tt>::   The hexadecimal color to highlight ends on the unclicked control when hovered over
+  # <tt>:saving_class</tt>::          The CSS class to apply to the control when the user has clicked the save button
+  # <tt>:form_class</tt>::            The CSS class to apply to the overall form
+  # <tt>:hover_class</tt>::           The CSS class to apply to the control when it is hovered over
+  # <tt>:oncomplete</tt>::            JavaScript snippet that is evaluated when the save is successful
+  # <tt>:onfailure</tt>::             JavaScript snippet that is evaluated when the save is unsucessful
+  # <tt>:options</tt>::               Pass through options to the AJAX call (see prototype's Ajax.Updater)
+  # <tt>:with</tt>::                  JavaScript snippet that should return what is to be sent
+  #                                   in the AJAX call, +form+ is an implicit parameter
+  # <tt>:script</tt>::                Instructs the in-place editor to evaluate the remote JavaScript response (default: false)
+  # <tt>:click_to_edit_text</tt>::    The text shown during mouseover the editable text (default: "Click to edit")
+  #
+  # To create an InPlaceCollectionEditor pass:
+  # <tt>:collection</tt>::  An enumerable, typically an array or two-dimensional array
+  #
+  # Additional options for InPlaceCollectionEditor:
+  # <tt>:load_collection_url</tt>::   URL where a collection can be retrieved via AJAX
+  # <tt>:load_collection_text</tt>::  The message to display when collection is being retrieved from +:load_collection_url+
+  # <tt>:load_class</tt>::            The class name applied when collection is being retrieved from +:load_collection_url+
+  # <tt>:value</tt>::                 The key to use when selecting an option from the select (or the value when clicked on)
+
   def in_place_editor(field_id, options = {})
     collection = options[:collection] && 'Collection'
 

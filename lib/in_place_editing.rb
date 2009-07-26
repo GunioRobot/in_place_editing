@@ -13,6 +13,11 @@ module InPlaceEditing
   #   # View
   #   <%= in_place_editor_field :post, 'title' %>
   #
+  # # Options to pass to +in_place_edit_for+
+  # <tt>:display</tt>::         A method to send to the object instead of #to_s when returning a saved value
+  # <tt>:no_association</tt>::  Prevents associations from being traversed and assigned (to allow direct manipulation)
+  #
+  # Note: Currently only +belongs_to+ and +has_one+ associations will be set with an +id+ if in_place_edit_for
   module ClassMethods
     def in_place_edit_for(object, attribute, options = {})
       define_method("set_#{object}_#{attribute}") do
